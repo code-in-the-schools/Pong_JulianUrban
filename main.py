@@ -15,12 +15,29 @@ class Paddle(object):
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
+
+  def isHit(self, width, height):
+    u = False
+    d = False
+
+    if self.y == 0:
+      u = True
+    if self.y == height - 50:
+      d = True
+
+  def movement(self, width, height):
+    key = pygame.key.get_pressed()
+    if key[pygame.K_DOWN] and p.isHit(width, height).d == False:
+      self.y += 1
+    if key[pygame.K_UP] and p.isHit(width, height).u == False:
+      self.y -= 1
   
 
 pygame.init()
 screen_width = 600
 screen_height = 600
 screen = pygame.display.set_mode((int(screen_width),int(screen_height)))
+p = Paddle()
 
 running = True
 while running:
@@ -30,5 +47,6 @@ while running:
       running = False
 
   screen.fill((255, 255, 255))
-  Paddle.draw(screen)
+  p.draw(screen)
+  p.movement(screen_width, screen_height)
   pygame.display.update()
