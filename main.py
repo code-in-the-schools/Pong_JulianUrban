@@ -1,8 +1,9 @@
 import pygame
 import os
 
-img_path = os.path.join('paddle.png')
+img_path = os.path.join("paddle.png")
 img_path = os.path.join("wall.png")
+img_path = os.path.join("ball.png")
 
 class Paddle(object):
   def __init__(self):
@@ -39,7 +40,24 @@ class Wall(object):
     self.y = y
     self.hitbox = (x, y, width + 5, height + 5)
 
+class Ball():
+  def __init__(self):
+    pygame.sprite.Sprite.__init__(self)
+    Ball.image = pygame.image.load("ball.png")
+    self.image = Ball.image
+    self.image = pygame.transform.scale(self.image,(50, 50))
+    self.x = 100
+    self.y = 100
+    self.x_velocity = 1
+    self.y_velocity = 1
+    self.hitbox = (self.x, self.y, 55, 55)
+  
+  def bounce(self):
+    self.x += self.x_velocity
+    self.y += self.y_velocity
+    
 
+    
 
 
 pygame.init()
@@ -59,7 +77,7 @@ while running:
   screen.fill((255, 255, 255))
   p.draw(screen)
   p.movement()
-  w.draw(screen, 600, 50, 0, 0)
-  w.draw(screen, 50, 600, 550, 0)
-  w.draw(screen, 600, 50, 0, 550)
+  w.draw(screen, 600, 25, 0, 0)
+  w.draw(screen, 25, 600, 575, 0)
+  w.draw(screen, 600, 25, 0, 575)
   pygame.display.update()
